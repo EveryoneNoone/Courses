@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Color Guessing Game</title>
+	</head>
+	<body onload="playGame();">
+		<script>
+			var colors = [
+				"aliceblue", "blueviolet", "chartreuse", "goldenrod", "lime", "maroon",
+				"olive", "papayawhip", "skyblue", "turquoise", "violet", "yellow"
+			];
+			var targetColor = "";
+			var guessesCount = 0;
+
+			function playGame() {
+				var randomIndex = Math.floor(Math.random() * colors.length);
+				targetColor = colors[randomIndex];
+				console.log(targetColor);
+				var proposedColor = "";
+				var finished = false;
+
+				do {
+					proposedColor = prompt("I am thinking of a color from this list:\n\n"+
+						colors + "\n\nWhat is the color?");
+					console.log(proposedColor);
+					guessesCount++;
+					finished = checkInput(proposedColor);
+				} while (!finished);
+
+				body = document.getElementsByTagName("body")[0];
+				body.style.background = proposedColor;
+			}
+
+			function checkInput(inputColor) {
+				if (inputColor == targetColor) {
+					alert("Yes, it's " + inputColor + " indeed!\n\nYou took " + guessesCount + " guesses!");
+					if (guessesCount == 1) {
+						alert("UNBELIEVEABLE!!!");
+					}
+					else if (guessesCount <= 4) {
+						alert("Great job! :-)");
+					}
+					return true;
+				}
+
+				if (colors.indexOf(inputColor) == -1) {
+					alert("Sorry, I do not know that color... :-(");
+				}
+				else if (targetColor < inputColor) {
+					alert("Nope! My color is aplphabetically lower than yours!");
+				}
+				else {
+					alert("No! My color is aplphabetically higher than yours!");
+				}
+
+				return false;
+			}
+		</script>
+	</body>
+</html>

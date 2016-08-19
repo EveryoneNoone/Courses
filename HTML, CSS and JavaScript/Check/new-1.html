@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <title> javascript color guessing game</title>
+	  <meta name="author" content="hend alaa">
+</head>
+<body onload="do_game()">
+    <script type="text/javascript">
+	        var guesses = 0;
+			var finished = false;
+			var target_index ;
+			var target ;
+			var guess_input ;
+			var colors = [thistle, snow, steelblue, teal, tan];
+			
+			function do_game() {
+				target = math.floor( math.random() * colors.length) ;
+				target_index = colors[target] ;
+				alert("target_index") ;
+				
+				while (!finished) {
+					guess_input = prompt("I'm thinking of one of these colors:"+ colors + "/n/n" + "What color am i thinking of?") ;
+				    guesses += 1 ;
+					finished = check_guess() ;
+				}
+				
+			function check_guess() {
+				    var string_1 = "guess_input" ;
+					var string_2 = "target_index"
+			    if ((target_index == colors[-1]) || (target_index == colors[5]) ) {
+			        alert("Sorry i don't recognize your color./n/n"+ "Please try again./n/n");
+				    return false;
+				}
+				if (string_1 < string_2) {
+					alert("Sorry, your guess is not correct./n/n"+"Hint: your guess is alphapetically lower than mine./n/n"+"please try again") ;
+				    return false;
+				}
+			    if(string_1 > string_2) {
+					alert("Sorry, your guess is not correct!./n/n"+"Hint: your guess is alphapetically hiegher than mine./n/n"+"pleas try again") ;
+				    return false;
+				}
+			    alert("Congratulations! you have guessed the color./n/n"+"it took you "+guesses+ "./n/n guesses to finish the game"
+			       +"you can see the color in the back gtound") ;
+				   
+				myBody=document.getElementsByTagName("body")[0];
+                myBody.style.background=target_index;
+				return true ;
+			}	
+		}
+		</script>
+</body>
+</html>
